@@ -1,0 +1,140 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(196, 189, 189);
+}
+.wrapper{
+    margin-top: 120px;
+    margin-left: 200px; 
+}
+#toast{
+    position: fixed;
+    right: 20px;
+    top: 0;
+    z-index: 8;
+    scroll-behavior: smooth;
+    transition: all linear 0.3s;
+}
+.toast{
+    border-left: 4px solid;
+    width: 320px;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    margin-top: 24px;
+    box-shadow: 5px 4px 10px rgba( 0, 0, 0, 0.4);
+    border-radius: 4px;
+    background-color: white;
+    transition: all linear 0.2s;
+}
+@keyframes ScrollIn{
+    from{
+        opacity: 0;
+        transform: translateX(calc( 100% + 24px));
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes FadeOut{
+    to{
+        opacity: 0;
+    }
+}
+.toast:hover{
+    cursor: pointer;
+}
+.toast__icon{
+    padding: 0px 8px;
+}
+.toast__icon i{
+    font-size: 20px;
+}
+.toast__body{
+    flex: 1;
+    padding: 4px;
+}
+.toast__heading h2{
+    font-size: 18px;
+}
+.toast__content{
+    margin-top: 4px;
+}
+.toast__content p{
+    font-size: 14px;
+}
+.toast__close{
+    padding: 8px;
+}
+.toast__close i{
+    font-size: 20px;
+    color: rgb(165, 163, 163);
+}
+.toast--success{
+    border-color: #6ac259;
+}
+.btn--success{
+    background-color: #6ac259;
+}
+.toast--success .toast__icon i{
+    color: #6ac259;
+}
+.toast--infor{
+    border-color: #016df0;
+}
+.btn--infor{
+    background-color: #016df0;
+}
+.toast--infor .toast__icon i{
+    color: #016df0;
+}
+.toast--loading{
+    border-color:#088aff ;
+}
+.btn--loading{
+    background-color: #088aff;
+}
+.toast--loading .toast__icon i{
+    color: #088aff;
+}
+.toast--warning{
+    border-color: #ffda43;
+}
+.btn--warning{
+    background-color: #ffda43;
+}
+.toast--warning .toast__icon i{
+    color: #ffda43;
+}
+.toast--error{
+    border-color: #d80026;
+}
+.btn--error{
+    background-color: #d80026;
+}
+.toast--error .toast__icon i{
+    color: #d80026;
+}
+/* Show Button */
+.btn{
+    border-radius: 50px;
+    max-width: 240px;
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    transition: all linear 0.2s;
+}
+.btn:hover{
+    cursor: pointer;
+    opacity: 0.6;
+}
+.btn__content{
+    font-size: 16px;
+    padding: 12px 24px;
+    color: white;
+}
