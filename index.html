@@ -14,6 +14,9 @@
 
 <body>
     <div id="root">
+        <div class="noti">
+            <i class="fa-solid fa-bell noti__icon"></i>
+        </div>
         <div id="toast"></div>
         <div class="wrapper">
             <div class="btn btn--success" onclick="showSuccessToast();">
@@ -36,45 +39,60 @@
     <!-- File JS xử lí toast -->
     <script src="./assets/javascript/app.js"></script>
     <script>
+        var toastList= [];
         function showSuccessToast() {
-            Toast({
+            toastList.push( {
                 title: 'Success',
                 content: 'Congratulation! ',
                 type: 'success',
                 duration: 3,
             });
+            executeToast();
         }
         function showInforToast() {
-            Toast({
+            toastList.push( {
                 title: 'Infor',
                 content: 'This is an Infor toast.',
                 type: 'infor',
                 duration: 3,
             });
+            executeToast();
         }
         function showLoadingToast() {
-            Toast({
+            toastList.push( {
                 title: 'Loading',
                 content: 'Wait a minute!',
                 type: 'loading',
                 duration: 3,
             });
+            executeToast();
         }
         function showWarningToast() {
-            Toast({
+            toastList.push( {
                 title: 'Warning',
                 content: 'Be careful!!!',
                 type: 'warning',
                 duration: 3,
             });
+            executeToast();
         }
         function showErrorToast() {
-            Toast({
+            toastList.push( {
                 title: 'Opps',
                 content: 'There is something wrong happened!',
                 type: 'error',
                 duration: 3,
             });
+            executeToast();
+        }
+        function executeToast(){
+            const toastContainer= document.getElementById( 'toast');
+            if( toastContainer.children.length< 4){
+                const data= toastList.shift();
+                if( data) {
+                    Toast( data);
+                }
+            }
         }
     </script>
 </body>

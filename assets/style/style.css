@@ -11,15 +11,36 @@ html{
     margin-top: 120px;
     margin-left: 200px; 
 }
+.noti{
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: white;
+    max-width: 52px;
+    position: fixed;
+    top: 6px;
+    right: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.noti__icon, .noti__number{
+    font-size: 14px;
+    color: black;
+}
+.noti__number{
+    padding: 0px 8px;
+}
 #toast{
     position: fixed;
     right: 20px;
-    top: 0;
+    top: 12px;
     z-index: 8;
     scroll-behavior: smooth;
     transition: all linear 0.3s;
 }
 .toast{
+    -webkit-user-select: none;
+    user-select: none;
     border-left: 4px solid;
     width: 320px;
     display: flex;
@@ -122,6 +143,8 @@ html{
 }
 /* Show Button */
 .btn{
+    -webkit-user-select: none;
+    user-select: none;
     border-radius: 50px;
     max-width: 240px;
     margin-top: 24px;
