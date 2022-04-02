@@ -22,6 +22,7 @@ html{
     cursor: pointer;
     display: flex;
     align-items: center;
+    transition: all linear 0.3s;
 }
 .noti__icon, .noti__number{
     font-size: 14px;
@@ -29,6 +30,7 @@ html{
 }
 .noti__number{
     padding: 0px 8px;
+    transition: all linear 0.3s;
 }
 #toast{
     position: fixed;

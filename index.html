@@ -36,12 +36,14 @@
             </div>
         </div>
     </div>
-    <!-- File JS xử lí toast -->
-    <script src="./assets/javascript/app.js"></script>
     <script>
-        var toastList= [];
+        // Lắng nghe sự kiện show toast 
+        var toastList = [];
+        var clickedTime = 0;
         function showSuccessToast() {
-            toastList.push( {
+            clickedTime++;
+            setNotiNum( clickedTime);
+            toastList.push({
                 title: 'Success',
                 content: 'Congratulation! ',
                 type: 'success',
@@ -50,7 +52,9 @@
             executeToast();
         }
         function showInforToast() {
-            toastList.push( {
+            clickedTime++;
+            setNotiNum( clickedTime);
+            toastList.push({
                 title: 'Infor',
                 content: 'This is an Infor toast.',
                 type: 'infor',
@@ -59,7 +63,9 @@
             executeToast();
         }
         function showLoadingToast() {
-            toastList.push( {
+            clickedTime++;
+            setNotiNum( clickedTime);
+            toastList.push({
                 title: 'Loading',
                 content: 'Wait a minute!',
                 type: 'loading',
@@ -68,7 +74,9 @@
             executeToast();
         }
         function showWarningToast() {
-            toastList.push( {
+            clickedTime++;
+            setNotiNum( clickedTime);
+            toastList.push({
                 title: 'Warning',
                 content: 'Be careful!!!',
                 type: 'warning',
@@ -77,7 +85,9 @@
             executeToast();
         }
         function showErrorToast() {
-            toastList.push( {
+            clickedTime++;
+            setNotiNum( clickedTime);
+            toastList.push({
                 title: 'Opps',
                 content: 'There is something wrong happened!',
                 type: 'error',
@@ -85,12 +95,117 @@
             });
             executeToast();
         }
-        function executeToast(){
-            const toastContainer= document.getElementById( 'toast');
-            if( toastContainer.children.length< 4){
-                const data= toastList.shift();
-                if( data) {
-                    Toast( data);
+        const toastContainer = document.getElementById('toast');
+        function executeToast() {
+            if (toastContainer.children.length < 4) {
+                const data = toastList.shift();
+                if (data) {
+                    Toast(data);
+                }
+            }
+        }
+
+
+        // Toast
+        const toastElement = document.querySelector('#toast');
+        // Truyền vào 1 object chứa tiêu đề, nội dung, kiểu, thời gian bị ẩn đi
+        function Toast({
+            title = '',
+            content = '',
+            type = '',
+            duration = 3
+        }) {
+            const icons = {
+                success: 'fa-solid fa-circle-check',
+                infor: 'fa-solid fa-circle-info',
+                loading: 'fa-solid fa-spinner',
+                warning: 'fa-solid fa-circle-exclamation',
+                error: 'fa-solid fa-circle-xmark',
+            };
+            const icon = icons[type];
+            const toast = document.createElement('div');
+            toast.classList.add('toast', `toast--${type}`);
+            toast.style.animation = `ScrollIn ease 0.3s, FadeOut linear 1s ${duration}s forwards`;
+            toast.innerHTML = `
+                    <div class="toast__icon">
+                        <i class="${icon}"></i>
+                    </div>
+                    <div class="toast__body">
+                        <div class="toast__heading">
+                            <h2>${title}</h2>
+                        </div>
+                        <div class="toast__content">
+                            <p>${content}</p>
+                        </div>
+                    </div>
+                    <div class="toast__close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    `;
+            toastElement.appendChild(toast);
+            var timer;
+            timer = setTimeout(function () {
+                toastElement.removeChild(toast);
+                clickedTime--;
+                setNotiNum( clickedTime);
+                if (toastList.length !== 0) {
+                    const data = toastList.shift();
+                    Toast(data);
+                }
+            }, (duration * 1000 + 1000));
+            toast.onmouseenter = function () {
+                toast.style.animation = '';
+                clearTimeout(timer);
+            }
+            toast.onmouseleave = function () {
+                toast.style.animation = `FadeOut linear 1s ${duration}s forwards`;
+                return timer = setTimeout(function () {
+                    toastElement.removeChild(toast);
+                    clickedTime--;
+                    setNotiNum( clickedTime);
+                    if (toastList.length !== 0) {
+                        const data = toastList.shift();
+                        Toast(data);
+                    }
+                }, (duration * 1000 + 1000));
+            }
+            handleClose(toast, timer);
+        }
+
+        function handleClose(toast, timer) {
+            toast.onclick = function (e) {
+                if (e.target.closest('.toast__close')) {
+                    clearTimeout(timer);
+                    toastElement.removeChild(toast);
+                    clickedTime--;
+                    setNotiNum( clickedTime);
+                    if (toastList.length !== 0) {
+                        const data = toastList.shift();
+                        Toast(data);
+                    }
+                }
+            }
+        }
+
+
+        //Xử lí hiện số lượng thông báo
+        function setNotiNum( clickedTime){
+            const notiElement= document.querySelector( '.noti');
+            const notiNum= notiElement.querySelector( '.noti__number');
+            if( notiNum){
+                if( clickedTime){
+                    notiNum.innerText= clickedTime;
+                }
+                else{
+                    notiNum.remove();
+                }
+            }
+            else{
+                if( clickedTime){
+                    const newNotiNum= document.createElement( 'h3');
+                    newNotiNum.classList.add( 'noti__number');
+                    newNotiNum.innerText= clickedTime;
+                    notiElement.appendChild( newNotiNum);
                 }
             }
         }
