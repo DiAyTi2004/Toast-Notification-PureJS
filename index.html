@@ -38,103 +38,103 @@
     </div>
     <script>
         // Lắng nghe sự kiện show toast 
-        // var toastList = [];
-        // var clickedTime = 0;
+        var toastList = [];
+        var clickedTime = 0;
         const toastContainer = document.getElementById('toast');
         function showSuccessToast() {
-            // clickedTime++;
-            // setNotiNum( clickedTime);
-            // toastList.push({
-            //     title: 'Success',
-            //     content: 'Congratulation! ',
-            //     type: 'success',
-            //     duration: 3,
-            // });
-            // executeToast();
-            if( toastContainer.children.length< 4){
-                Toast({
+            clickedTime++;
+            setNotiNum( clickedTime);
+            toastList.push({
                 title: 'Success',
                 content: 'Congratulation! ',
                 type: 'success',
-                    duration: 3,
-                });
-            }
+                duration: 3,
+            });
+            executeToast();
+            // if( toastContainer.children.length< 4){
+            // Toast({
+            //     title: 'Success',
+            //     content: 'Congratulation! ',
+            //     type: 'success',
+            //         duration: 3,
+            //     });
+            // }
         }
         function showInforToast() {
-            // clickedTime++;
-            // setNotiNum( clickedTime);
-            // toastList.push({
-            //     title: 'Infor',
-            //     content: 'This is an Infor toast.',
-            //     type: 'infor',
-            //     duration: 3,
-            // });
-            // executeToast();
-            if( toastContainer.children.length< 4){
-                Toast({
+            clickedTime++;
+            setNotiNum( clickedTime);
+            toastList.push({
                 title: 'Infor',
                 content: 'This is an Infor toast.',
                 type: 'infor',
-                    duration: 3,
-                });
-            }
+                duration: 3,
+            });
+            executeToast();
+            // if( toastContainer.children.length< 4){
+            // Toast({
+            //     title: 'Infor',
+            //     content: 'This is an Infor toast.',
+            //     type: 'infor',
+            //         duration: 3,
+            //     });
+            // }
         }
         function showLoadingToast() {
-            // clickedTime++;
-            // setNotiNum( clickedTime);
-            // toastList.push({
-            //     title: 'Loading',
-            //     content: 'Wait a minute!',
-            //     type: 'loading',
-            //     duration: 3,
-            // });
-            // executeToast();
-            if( toastContainer.children.length< 4){
-                Toast({
+            clickedTime++;
+            setNotiNum( clickedTime);
+            toastList.push({
                 title: 'Loading',
                 content: 'Wait a minute!',
                 type: 'loading',
-                    duration: 3,
-                });
-            }
+                duration: 3,
+            });
+            executeToast();
+            // if( toastContainer.children.length< 4){
+            // Toast({
+            //     title: 'Loading',
+            //     content: 'Wait a minute!',
+            //     type: 'loading',
+            //         duration: 3,
+            //     });
+            // }
         }
         function showWarningToast() {
-            // clickedTime++;
-            // setNotiNum( clickedTime);
-            // toastList.push({
-            //     title: 'Warning',
-            //     content: 'Be careful!!!',
-            //     type: 'warning',
-            //     duration: 3,
-            // });
-            // executeToast();
-            if( toastContainer.children.length< 4){
-                Toast({
+            clickedTime++;
+            setNotiNum( clickedTime);
+            toastList.push({
                 title: 'Warning',
                 content: 'Be careful!!!',
                 type: 'warning',
-                    duration: 3,
-                });
-            }
+                duration: 3,
+            });
+            executeToast();
+            // if( toastContainer.children.length< 4){
+            // Toast({
+            //     title: 'Warning',
+            //     content: 'Be careful!!!',
+            //     type: 'warning',
+            //         duration: 3,
+            //     });
+            // }
         }
         function showErrorToast() {
-            // clickedTime++;
-            // setNotiNum( clickedTime);
-            // toastList.push({
-            //     title: 'Opps',
-            //     content: 'There is something wrong happened!',
-            //     type: 'error',
-            //     duration: 3,
-            // });
-            // executeToast();
-            if( toastContainer.children.length< 4){
-                Toast({
+            clickedTime++;
+            setNotiNum( clickedTime);
+            toastList.push({
                 title: 'Opps',
                 content: 'There is something wrong happened!',
                 type: 'error',
-                    duration: 3,
-                });
-            }
+                duration: 3,
+            });
+            executeToast();
+            // if( toastContainer.children.length< 4){
+            // Toast({
+            //     title: 'Opps',
+            //     content: 'There is something wrong happened!',
+            //     type: 'error',
+            //         duration: 3,
+            //     });
+            // }
         }
         function executeToast() {
             if (toastContainer.children.length < 4) {
@@ -186,12 +186,12 @@
             var timer;
             timer = setTimeout(function () {
                 toastElement.removeChild(toast);
-                // clickedTime--;
-                // setNotiNum( clickedTime);
-                // if (toastList.length !== 0) {
-                // const data = toastList.shift();
-                // Toast(data);
-                // }
+                clickedTime--;
+                setNotiNum( clickedTime);
+                if (toastList.length !== 0) {
+                const data = toastList.shift();
+                Toast(data);
+                }
             }, (duration * 1000 + 1000));
             toast.onmouseenter = function () {
                 toast.style.animation = '';
@@ -201,12 +201,12 @@
                 toast.style.animation = `FadeOut linear 1s ${duration}s forwards`;
                 return timer = setTimeout(function () {
                     toastElement.removeChild(toast);
-                    // clickedTime--;
-                    // setNotiNum( clickedTime);
-                    // if (toastList.length !== 0) {
-                    // const data = toastList.shift();
-                    // Toast(data);
-                    // }
+                    clickedTime--;
+                    setNotiNum( clickedTime);
+                    if (toastList.length !== 0) {
+                    const data = toastList.shift();
+                    Toast(data);
+                    }
                 }, (duration * 1000 + 1000));
             }
             handleClose(toast, timer);
@@ -217,12 +217,12 @@
                 if (e.target.closest('.toast__close')) {
                     clearTimeout(timer);
                     toastElement.removeChild(toast);
-                    // clickedTime--;
-                    // setNotiNum( clickedTime);
-                    // if (toastList.length !== 0) {
-                    // const data = toastList.shift();
-                    // Toast(data);
-                    // }
+                    clickedTime--;
+                    setNotiNum( clickedTime);
+                    if (toastList.length !== 0) {
+                    const data = toastList.shift();
+                    Toast(data);
+                    }
                 }
             }
         }
